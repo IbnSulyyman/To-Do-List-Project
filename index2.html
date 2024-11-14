@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <div>
+      <div class="container">
+        <input class="js-input-task" placeholder="Type task">
+        <input class="js-input-date" type="date">
+        <button onclick="addBtn();">Add</button>        
+      </div>
+      <div class="js-added-task">
+        
+      </div>
+
+    </div>
+    <style>
+      .container {
+        width: 500px;
+        display: grid;
+        grid-template-columns:175px 118px 100px;
+        justify-items: left;
+      }
+      .task-grid { 
+        width: 500px;
+        display: grid;
+        grid-template-columns:175px 118px 100px;
+        justify-items: left;
+        align-items: stretch;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      input{
+        padding-top: 3px 5px;
+        padding-bottom: 5px;
+        margin-right: 10px;
+
+      }
+      button{
+        cursor: pointer;
+      }
+      .container button{
+        color: white;
+        background-color: green;
+        border: none;
+        padding: 5px 28px;
+        font-size: 15px;
+      }
+      .task-grid button {
+        color: white;
+        background-color: darkred;
+        border: none;
+        padding: 5px 20px;
+        font-size: 15px;
+      }
+    </style>
+    <script>
+      function addBtn() {
+        const toDo = document.querySelector('.js-input-task').value;
+        const todoDate = document.querySelector('.js-input-date').value;
+        console.log(toDo, todoDate);
+
+        const taskContainer = document.createElement('div');
+        taskContainer.classList.add('task-grid');
+        taskContainer.innerHTML = `
+          <div>${toDo}</div>
+          <div>${todoDate}</div>
+          <button onclick="deleteTask(this)">Delete</button>
+        `;
+        document.querySelector('.js-added-task').appendChild(taskContainer);
+        document.querySelector('.js-input-task').value = ''
+      };
+
+      function deleteTask(button) {
+        button.parentElement.remove();
+}
+    </script>
+  </body>
+</html>
